@@ -1,0 +1,36 @@
+{
+  "name": "multiple-pages",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently \"node server.js\" \"node browser.js\""
+  },
+  "author": "zhaoxiang",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.7.2",
+    "@babel/plugin-transform-runtime": "^7.6.2",
+    "@babel/preset-env": "^7.7.1",
+    "babel-loader": "^8.0.6",
+    "browser-sync": "^2.26.7",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^7.0.1",
+    "gulp-file-include": "^2.1.1",
+    "gulp-htmlmin": "^5.0.1",
+    "gulp-sass": "^4.0.2",
+    "gulp-sass-import": "^1.0.0",
+    "gulp-uglify": "^3.0.2",
+    "node-sass": "^4.13.0",
+    "node-watch": "^0.6.3",
+    "shelljs": "^0.8.3",
+    "vinyl-named": "^1.1.0",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10",
+    "webpack-stream": "^5.2.1"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.7.2",
+    "concurrently": "^5.0.0"
+  }
+}
