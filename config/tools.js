@@ -12,6 +12,8 @@ const sassImport = require('gulp-sass-import');
 const autofx = require('gulp-autoprefixer');//css浏览器前缀补全
 const config = require('./config');
 const htmlmin = require('gulp-htmlmin');
+const entryDir = 'src';
+const outputDir = 'share';
 const options = {
     collapseWhitespace:true,//清除空格
     collapseBooleanAttributes:true,//省略布尔属性的值
@@ -23,6 +25,8 @@ const options = {
     minifyCSS:true//压缩html中的css代码。
 };
 let tools = {
+    entryDir: entryDir,
+    outputDir: outputDir,
     judgeDir(path){
         let stat = fs.lstatSync(path);
         let isDir = stat.isDirectory();
@@ -66,8 +70,13 @@ let tools = {
         gulp.src(entry)
         .pipe(named())
         .pipe(webpack(webpackConfig))
-        .pipe(uglify())
         .pipe(gulp.dest(output))
     },
+    uglifyJs(entry,output){
+        gulp.src(entry)
+        .pipe(named())
+        .pipe(uglify())
+        .pipe(gulp.dest(output))
+    }
 }
 module.exports = tools;

@@ -1,13 +1,13 @@
 const fs = require('fs');
 const watch = require('node-watch');
+const tools = require('./config/tools');
 const path = require('path');
 const browserSync = require('browser-sync').create();//静态服务器
 const reload = browserSync.reload;
-const output = 'dist';
 const shell = require('shelljs');
-const entry = 'src';
+const entry = tools.entryDir;
+const output = tools.outputDir;
 const watchSrc = path.resolve(__dirname,`./${entry}`);
-const tools = require('./config/tools');
 let jsArr = fs.readdirSync(path.resolve(__dirname,`./${entry}/js`));
 if(jsArr.length > 0){
     tools.resolveJs(`./${entry}/js/*.js`,path.resolve(__dirname,`./${output}/js`));
@@ -24,9 +24,12 @@ watch(watchSrc,{recursive: true},function(evt,name){
     }
     if(evt == 'update'){
         if(srcObj.ext == '.js'){
-            let isExist = fs.existsSync(ouputPath);
-            if(!isExist){
-                shell.exec('node server.js');
+            let jsPath = path.resolve(__dirname,`./${output}/js`);
+            if(ouputPath.indexOf(jsPath) != -1){
+                let isExist = fs.existsSync(ouputPath);
+                if(!isExist){
+                    shell.exec('node server.js');
+                }
             }
         }
         if(srcObj.ext == '.scss'){
